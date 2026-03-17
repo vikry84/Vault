@@ -1,1 +1,326 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vikry Creative — Files & Donasi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0d0f; --bg2: #141417; --bg3: #1c1c21;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0efe8; --muted: #888884;
+      --accent: #e8ff5a; --accent2: #b8ff3a;
+      --card: #17171b;
+      --kofi: #FF5E5B; --saweria: #f5a623;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+    nav { border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; background: rgba(13,13,15,0.92); backdrop-filter: blur(14px); z-index: 100; }
+    nav .inner { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 800; font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -0.5px; flex-shrink: 0; }
+    .logo span { color: var(--accent); }
+    .nav-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav-saweria { padding: 7px 16px; background: var(--saweria); color: #1a1000; border-radius: 999px; font-size: 12px; font-weight: 700; font-family: 'Cabinet Grotesk', sans-serif; text-decoration: none; transition: all 0.15s; }
+    .nav-saweria:hover { filter: brightness(1.1); transform: scale(1.03); }
+    .nav-kofi { padding: 7px 16px; background: var(--kofi); color: white; border-radius: 999px; font-size: 12px; font-weight: 700; font-family: 'Cabinet Grotesk', sans-serif; text-decoration: none; transition: all 0.15s; }
+    .nav-kofi:hover { filter: brightness(1.1); transform: scale(1.03); }
+
+    .hero { padding: 4.5rem 0 3rem; text-align: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border: 1px solid var(--border2); border-radius: 999px; font-size: 12px; color: var(--muted); margin-bottom: 1.5rem; }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero h1 { font-family: 'Cabinet Grotesk', sans-serif; font-size: clamp(32px, 7vw, 58px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 1rem; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { padding: 11px 26px; background: var(--accent); color: #0d0d0f; border-radius: 10px; font-size: 13px; font-weight: 700; font-family: 'Cabinet Grotesk', sans-serif; text-decoration: none; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+    .btn-ghost { padding: 11px 26px; background: transparent; color: var(--text); border: 1px solid var(--border2); border-radius: 10px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.3); background: var(--bg3); }
+
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 3rem; }
+    .stat { background: var(--card); padding: 1.25rem; text-align: center; }
+    .stat b { display: block; font-family: 'Cabinet Grotesk', sans-serif; font-size: 24px; font-weight: 800; color: var(--accent); letter-spacing: -1px; }
+    .stat span { font-size: 12px; color: var(--muted); }
+
+    .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .section-head h2 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+    .section-head span { font-size: 12px; color: var(--muted); }
+
+    .how { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px; margin-bottom: 3rem; }
+    .how-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; }
+    .how-num { font-family: 'Cabinet Grotesk', sans-serif; font-size: 32px; font-weight: 800; color: var(--border2); line-height: 1; margin-bottom: 8px; }
+    .how-card h4 { font-size: 14px; font-weight: 600; font-family: 'Cabinet Grotesk', sans-serif; color: var(--text); margin-bottom: 4px; }
+    .how-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .filter-btn { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border2); background: transparent; font-size: 12px; color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'Instrument Sans', sans-serif; }
+    .filter-btn.active { background: var(--accent); color: #0d0d0f; border-color: transparent; font-weight: 700; }
+    .filter-btn:hover:not(.active) { border-color: rgba(255,255,255,0.25); color: var(--text); }
+
+    .file-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 3rem; }
+    .file-item { display: flex; align-items: center; gap: 14px; padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; transition: all 0.2s; animation: fadeUp 0.35s ease both; }
+    .file-item:hover { border-color: var(--border2); background: var(--bg3); transform: translateX(4px); }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .file-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .file-info { flex: 1; min-width: 0; }
+    .file-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .file-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .file-badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+    .dl-btn { display: flex; align-items: center; gap: 6px; padding: 7px 14px; background: rgba(232,255,90,0.1); color: var(--accent); border: 1px solid rgba(232,255,90,0.2); border-radius: 8px; font-size: 12px; font-weight: 600; font-family: 'Cabinet Grotesk', sans-serif; flex-shrink: 0; transition: all 0.15s; }
+    .file-item:hover .dl-btn { background: var(--accent); color: #0d0d0f; border-color: transparent; }
+
+    .loading { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 13px; }
+    .loading-dot { display: inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin: 0 3px; animation: bounce 1.2s infinite; }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%,80%,100%{transform:scale(0.8);opacity:0.5} 40%{transform:scale(1.2);opacity:1} }
+    .empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 13px; background: var(--card); border: 1px dashed var(--border2); border-radius: 12px; }
+
+    .donate-section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem 2rem; text-align: center; margin-bottom: 3rem; position: relative; overflow: hidden; }
+    .donate-section::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:300px; height:300px; background:radial-gradient(circle,rgba(232,255,90,0.06) 0%,transparent 70%); pointer-events:none; }
+    .donate-section h2 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.75rem; }
+    .donate-section h2 span { color: var(--accent); }
+    .donate-section > p { font-size: 14px; color: var(--muted); max-width: 420px; margin: 0 auto 2rem; line-height: 1.6; }
+    .donate-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:520px){ .donate-cards { grid-template-columns: 1fr; } }
+    .donate-card { border-radius: 16px; padding: 1.5rem; text-align: left; }
+    .donate-card.saweria-card { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25); }
+    .donate-card.kofi-card { background: rgba(255,94,91,0.08); border: 1px solid rgba(255,94,91,0.25); }
+    .donate-card .card-icon { font-size: 28px; margin-bottom: 10px; }
+    .donate-card h3 { font-family: 'Cabinet Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .donate-card .card-desc { font-size: 12px; color: var(--muted); margin-bottom: 6px; line-height: 1.5; }
+    .donate-card .card-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; }
+    .saweria-card .card-tag { background: rgba(245,166,35,0.15); color: var(--saweria); }
+    .kofi-card .card-tag { background: rgba(255,94,91,0.15); color: var(--kofi); }
+    .donate-card .tiers { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .donate-card .tier { padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: 600; font-family: 'Cabinet Grotesk', sans-serif; cursor: pointer; border: 1px solid; transition: all 0.15s; background: transparent; }
+    .saweria-card .tier { border-color: rgba(245,166,35,0.3); color: var(--saweria); }
+    .saweria-card .tier.selected, .saweria-card .tier:hover { background: rgba(245,166,35,0.15); }
+    .kofi-card .tier { border-color: rgba(255,94,91,0.3); color: var(--kofi); }
+    .kofi-card .tier.selected, .kofi-card .tier:hover { background: rgba(255,94,91,0.15); }
+    .donate-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 10px; font-size: 13px; font-weight: 800; font-family: 'Cabinet Grotesk', sans-serif; text-decoration: none; transition: all 0.2s; width: 100%; justify-content: center; }
+    .donate-btn:hover { transform: translateY(-2px); }
+    .saweria-btn-full { background: var(--saweria); color: #1a1000; }
+    .saweria-btn-full:hover { filter: brightness(1.1); box-shadow: 0 8px 24px rgba(245,166,35,0.25); }
+    .kofi-btn-full { background: var(--kofi); color: white; }
+    .kofi-btn-full:hover { filter: brightness(1.1); box-shadow: 0 8px 24px rgba(255,94,91,0.25); }
+    .pill-icon { width: 20px; height: 20px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; }
+    .saweria-pill { background: #1a1000; color: var(--saweria); }
+    .kofi-pill { background: white; color: var(--kofi); }
+
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 12px; color: var(--muted); }
+    footer a { color: var(--accent); text-decoration: none; }
+    .footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="#">Vikry Creative<span>.</span></a>
+    <div class="nav-btns">
+      <a class="nav-saweria" href="https://saweria.co/USERNAME" target="_blank" rel="noopener">🇮🇩 Saweria</a>
+      <a class="nav-kofi" href="https://ko-fi.com/USERNAME" target="_blank" rel="noopener">☕ Ko-fi</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div style="height:2rem"></div>
+
+    <section class="hero">
+      <div class="hero-badge"><div class="dot"></div><span>Tersedia untuk diunduh</span></div>
+      <h1>Selamat datang di<br><em>Vikry Creative</em></h1>
+      <p>Selamat datang! Silahkan masuk, anggap saja rumah sendiri. Di sini kita akan berbagi musik, template, aplikasi, dan file gratis untuk semua!</p>
+      <div class="hero-actions">
+        <a href="#files" class="btn-primary">↓ Lihat File</a>
+        <a href="#donasi" class="btn-ghost">❤️ Donasi</a>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat"><b id="stat-files">—</b><span>file tersedia</span></div>
+      <div class="stat"><b id="stat-cats">—</b><span>kategori</span></div>
+      <div class="stat"><b>100%</b><span>gratis diunduh</span></div>
+    </div>
+
+    <div class="section-head" style="margin-bottom:1.25rem"><h2>Cara kerja</h2></div>
+    <div class="how">
+      <div class="how-card"><div class="how-num">01</div><h4>Temukan file</h4><p>Pilih file yang kamu butuhkan dari daftar di bawah.</p></div>
+      <div class="how-card"><div class="how-num">02</div><h4>Download gratis</h4><p>Klik tombol unduh, langsung diarahkan ke Google Drive.</p></div>
+      <div class="how-card"><div class="how-num">03</div><h4>Apresiasi (opsional)</h4><p>Dukung lewat Saweria (Indonesia) atau Ko-fi (luar negeri)!</p></div>
+    </div>
+
+    <section id="files">
+      <div class="section-head">
+        <h2>File tersedia</h2>
+        <span id="file-count-label">memuat...</span>
+      </div>
+      <div class="filters" id="filterBar">
+        <button class="filter-btn active" onclick="setFilter('semua')">Semua</button>
+      </div>
+      <div class="file-list" id="fileList">
+        <div class="loading">
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <p style="margin-top:1rem">Memuat file...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="donasi">
+      <div class="donate-section">
+        <h2>Suka konten ini? <span>Dukung aku!</span></h2>
+        <p>Semua file gratis. Tapi kalau terbantu, donasi kecilmu sangat berarti untuk terus berkarya ❤️</p>
+        <div class="donate-cards">
+          <div class="donate-card saweria-card">
+            <div class="card-icon">🇮🇩</div>
+            <h3>Saweria</h3>
+            <span class="card-tag">Untuk Indonesia</span>
+            <p class="card-desc">Bayar via GoPay, OVO, Dana, QRIS, atau transfer bank lokal.</p>
+            <div class="tiers">
+              <button class="tier" onclick="selectTier(this)">☕ Rp5k</button>
+              <button class="tier selected" onclick="selectTier(this)">🍱 Rp15k</button>
+              <button class="tier" onclick="selectTier(this)">💛 Bebas</button>
+            </div>
+            <a class="donate-btn saweria-btn-full" href="https://saweria.co/USERNAME" target="_blank" rel="noopener">
+              <span class="pill-icon saweria-pill">S</span>Donasi via Saweria
+            </a>
+          </div>
+          <div class="donate-card kofi-card">
+            <div class="card-icon">☕</div>
+            <h3>Ko-fi</h3>
+            <span class="card-tag">Worldwide / Luar Negeri</span>
+            <p class="card-desc">Bayar via PayPal, kartu kredit, atau Stripe. Tersedia di seluruh dunia.</p>
+            <div class="tiers">
+              <button class="tier" onclick="selectTier(this)">☕ $1</button>
+              <button class="tier selected" onclick="selectTier(this)">☕☕ $3</button>
+              <button class="tier" onclick="selectTier(this)">💛 Custom</button>
+            </div>
+            <a class="donate-btn kofi-btn-full" href="https://ko-fi.com/USERNAME" target="_blank" rel="noopener">
+              <span class="pill-icon kofi-pill">K</span>Support on Ko-fi
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <span>Dibuat dengan ❤️ oleh <strong>Vikry Creative</strong></span>
+      <a href="https://saweria.co/USERNAME" target="_blank">Saweria</a>
+      <a href="https://ko-fi.com/USERNAME" target="_blank">Ko-fi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRz1S-tCXmQASNMJPglWPvocAFyRk0h5bUqh-uG1lANMH7sKAG3jROhzyz9oN4YU1o-py-nGycsnEBc/pub?gid=0&single=true&output=csv';
+
+const CAT = {
+  musik:    { icon:'🎵', bg:'rgba(83,74,183,0.15)',   badge:'background:rgba(83,74,183,0.2);color:#AFA9EC' },
+  video:    { icon:'🎬', bg:'rgba(29,158,117,0.15)',  badge:'background:rgba(29,158,117,0.2);color:#5DCAA5' },
+  gambar:   { icon:'🖼', bg:'rgba(212,83,126,0.15)',  badge:'background:rgba(212,83,126,0.2);color:#ED93B1' },
+  dokumen:  { icon:'📄', bg:'rgba(55,138,221,0.15)',  badge:'background:rgba(55,138,221,0.2);color:#85B7EB' },
+  aplikasi: { icon:'⚙️', bg:'rgba(186,117,23,0.15)',  badge:'background:rgba(186,117,23,0.2);color:#EF9F27' },
+  lainnya:  { icon:'📦', bg:'rgba(136,135,128,0.15)', badge:'background:rgba(136,135,128,0.2);color:#888880' },
+};
+
+let allFiles = [];
+let activeFilter = 'semua';
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,'').toLowerCase());
+  return lines.slice(1).map(line => {
+    const vals = [];
+    let cur = '', inQ = false;
+    for (let c of line) {
+      if (c === '"') inQ = !inQ;
+      else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+      else cur += c;
+    }
+    vals.push(cur.trim());
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (vals[i]||'').replace(/^"|"$/g,'').trim());
+    return obj;
+  }).filter(r => r.nama);
+}
+
+function getCat(cat) {
+  const c = (cat||'').toLowerCase().trim();
+  return CAT[c] ? c : 'lainnya';
+}
+
+function renderFiles() {
+  const filtered = activeFilter === 'semua' ? allFiles : allFiles.filter(f => getCat(f.kategori) === activeFilter);
+  document.getElementById('stat-files').textContent = allFiles.length;
+  document.getElementById('stat-cats').textContent = [...new Set(allFiles.map(f => getCat(f.kategori)))].length;
+  document.getElementById('file-count-label').textContent = filtered.length + ' file';
+
+  const cats = ['semua', ...new Set(allFiles.map(f => getCat(f.kategori)))];
+  document.getElementById('filterBar').innerHTML = cats.map(c =>
+    `<button class="filter-btn${activeFilter===c?' active':''}" onclick="setFilter('${c}')">${c==='semua'?'Semua':(CAT[c]?.icon||'')+' '+c.charAt(0).toUpperCase()+c.slice(1)}</button>`
+  ).join('');
+
+  const list = document.getElementById('fileList');
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">Belum ada file di kategori ini.</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map((f, i) => {
+    const cat = getCat(f.kategori);
+    const m = CAT[cat];
+    return `<a class="file-item" href="${f.link||'#'}" target="_blank" rel="noopener" style="animation-delay:${i*0.05}s">
+      <div class="file-icon" style="background:${m.bg}">${m.icon}</div>
+      <div class="file-info">
+        <div class="file-name">${f.nama}</div>
+        <div class="file-meta">${f.deskripsi||'Klik untuk download'} · ${cat}</div>
+      </div>
+      <span class="file-badge" style="${m.badge}">${cat.toUpperCase()}</span>
+      <div class="dl-btn">↓ Unduh</div>
+    </a>`;
+  }).join('');
+}
+
+function setFilter(cat) { activeFilter = cat; renderFiles(); }
+
+function selectTier(btn) {
+  btn.closest('.tiers').querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+async function loadFiles() {
+  try {
+    const res = await fetch(SHEET_CSV);
+    const text = await res.text();
+    allFiles = parseCSV(text);
+    if (allFiles.length === 0) {
+      document.getElementById('fileList').innerHTML = '<div class="empty">Belum ada file. Tambahkan di Google Sheets!</div>';
+      document.getElementById('stat-files').textContent = '0';
+      document.getElementById('stat-cats').textContent = '0';
+      document.getElementById('file-count-label').textContent = '0 file';
+    } else {
+      renderFiles();
+    }
+  } catch (e) {
+    document.getElementById('fileList').innerHTML = '<div class="empty">Gagal memuat file. Coba refresh halaman.</div>';
+  }
+}
+
+loadFiles();
+</script>
+</body>
+</html>
